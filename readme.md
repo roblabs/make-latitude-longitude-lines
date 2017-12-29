@@ -35,3 +35,14 @@ Generates GeoJSON that looks like this
   "geometry": {"type":"LineString","coordinates":[[-180,32.875],[180,32.875]]      }
 }
 ```
+
+* Black Latitude & Longitude lines every 2.5 minutes
+
+![](assets/readme-lat-long-utm.png)
+
+---
+
+* Yellow UTM lines, every 1 Km
+  * Universal Transverse Mercator lines sourced from [NGA Office of Geomatics](http://earth-info.nga.mil/GandG/update/index.php?dir=coordsys&action=utm-1km-polyline-dloads)
+
+![](assets/readme-utm.png)
