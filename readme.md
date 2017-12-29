@@ -46,3 +46,8 @@ Generates GeoJSON that looks like this
   * Universal Transverse Mercator lines sourced from [NGA Office of Geomatics](http://earth-info.nga.mil/GandG/update/index.php?dir=coordsys&action=utm-1km-polyline-dloads)
 
 ![](assets/readme-utm.png)
+
+
+### Resources
+
+* [Degrees Minutes Seconds to/from Decimal Degrees](https://www.fcc.gov/media/radio/dms-decimal)
