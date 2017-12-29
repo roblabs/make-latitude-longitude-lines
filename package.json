@@ -1,0 +1,36 @@
+{
+  "_args": [
+    [
+      "make",
+      ""
+    ]
+  ],
+  "author": "roblabs",
+  "bin": {
+    "makeLatitudeLongitudeLines": "./cli.js"
+  },
+  "description": "Create Latitude & longitude lines on an interval of x minutes.",
+  "directories": {},
+  "keywords": [
+    "feature",
+    "featurecollection",
+    "geojson"
+  ],
+  "license": "MIT",
+  "main": "cli.js",
+  "homepage": "https://github.com/roblabs/make-latitude-longitude-lines",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roblabs/make-latitude-longitude-lines.git"
+  },
+  "bugs": {
+    "url": "https://github.com/roblabs/make-latitude-longitude-lines/issues"
+  },
+  "name": "make-latitude-longitude-lines",
+  "optionalDependencies": {},
+  "scripts": {
+    "test": "makeLatitudeLongitudeLines"
+  },
+  "version": "1.2.3",
+  "dependencies": {}
+}
