@@ -36,6 +36,20 @@ Generates GeoJSON that looks like this
 }
 ```
 
+``` bash
+makeLatitudeLongitudeLines > 2.5minutes.geojson
+
+# convert to ESRI Shapefile
+ogr2ogr -f "ESRI Shapefile" 2.5minutes.shp 2.5minutes.geojson
+
+# clip to San Diego
+BBOX="-117.34573 32.52852 -116.57119 33.05149"
+ogr2ogr \
+  -t_srs EPSG:4326 \
+  -clipdst $BBOX \
+  -f GeoJSON sandiego.geojson 2.5minutes.geojson
+```
+
 * Black Latitude & Longitude lines every 2.5 minutes
 
 ![](assets/readme-lat-long-utm.png)
