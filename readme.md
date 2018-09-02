@@ -1,5 +1,5 @@
 
-# Make Latitude & Longitude Lines
+## Make Latitude & Longitude Lines
 
 NPM script to generate latitude and longitude lines in GeoJSON format
 
@@ -7,9 +7,16 @@ Usage
 
 ``` bash
 # do this once
-npm -g install
+npm install --global
+# npm uninstall --global
 
 makeLatitudeLongitudeLines
+
+# or if you want to install to the current folder
+npm install
+./cli.js
+
+#
 
 ```
 
@@ -49,6 +56,7 @@ ogr2ogr \
   -clipdst $BBOX \
   -f GeoJSON sandiego.geojson 2.5minutes.geojson
 ```
+### Examples
 
 * Black Latitude & Longitude lines every 2.5 minutes
 
@@ -61,7 +69,50 @@ ogr2ogr \
 
 ![](assets/readme-utm.png)
 
+-----
 
-### Resources
+Filter the GeoJSON and just use the lines that cross at Null Island.
 
-* [Degrees Minutes Seconds to/from Decimal Degrees](https://www.fcc.gov/media/radio/dms-decimal)
+``` bash
+# use `makeLatitudeLongitudeLines` instead of `cli.js` if you installed as global
+
+# Generate
+./cli.js > out.geojson
+
+# Convert to ndjson
+cat out.geojson | geojson2ndjson > out.ndjson
+
+# filter and keep certain  properties
+ndjson-filter < out.ndjson 'd.properties.wgs84Decimal == "0.000000"' > null-island-grid.ndjson
+
+# merge a stream into a feature collection
+ndjson-reduce < null-island-grid.ndjson 'p.features.push(d), p' '{type: "FeatureCollection", features: []}' > null-island-grid.geojson
+
+# view at geojson.io
+geojsonio null-island-grid.geojson
+
+
+
+# or, as a one-liner
+
+cat out.geojson | \
+  geojson2ndjson | \
+  ndjson-filter 'd.properties.wgs84Decimal == "0.000000"' | \
+  ndjson-reduce 'p.features.push(d), p' '{type: "FeatureCollection", features: []}'
+```
+
+![](assets/readme-null-island-grid.png)
+
+-----
+
+### References
+
+* Degrees Minutes Seconds to/from Decimal Degrees _ https://www.fcc.gov/media/radio/dms-decimal
+
+* https://en.wikipedia.org/wiki/Decimal_degrees
+
+* https://github.com/stevage/geojson2ndjson
+
+* https://github.com/mbostock/ndjson-cli#filter
+
+* https://github.com/mapbox/geojsonio-cli
